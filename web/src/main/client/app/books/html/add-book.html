@@ -2,7 +2,20 @@
 <html>
 <body>
 <section>
-    <p>TODO dialog umożliwiający dodanie i zapisanie nowej książki</p>
+
+    <form class="form-group" role="form" style="width:400px">
+        <div class="form-group">
+            <label for="author">Author: </label>
+            <input type="text" class="form-control" id="author">
+        </div>
+        <p>added authors list...</p>
+        <div class="form-group">
+            <label for="title">Title: </label>
+            <input type="text" class="form-control" id="title">
+        </div>
+        <button ng-click="saveBook({'title':'ttt','authors':'aaa'})">Add</button>
+    </form>
+
 </section>
 </body>
 </html>
