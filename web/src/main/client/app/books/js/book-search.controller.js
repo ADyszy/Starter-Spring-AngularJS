@@ -48,11 +48,11 @@ angular.module('app.books').controller('BookSearchController', function ($scope,
     };
 
     $scope.bookEditValidation = function(book) {
-        if(book.title != "" && book.title!= null) {
+        if(book.title !== '' && book.title!== null) {
             bookSaveService.saveBook(book);
         } else {
             Flash.create('danger', 'Bad input, a book needs an author.', 'custom-class');
         }
-    }
+    };
 
 });

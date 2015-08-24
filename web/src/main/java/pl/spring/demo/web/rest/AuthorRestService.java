@@ -12,7 +12,8 @@ import java.util.List;
 /**
  * Created by ADYSZY on 19.08.2015.
  */
-@RestController(value="/books")
+@RestController
+@RequestMapping(value="/authors")
 public class AuthorRestService {
 
     @Autowired

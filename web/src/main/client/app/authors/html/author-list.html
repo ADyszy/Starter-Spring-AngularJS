@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+<section>
+    <p>Lista autorow:</p>
+    <button ng-click="findAll()">Szukaj</button>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>LastName</th>
+        </tr>
+        <tr ng-repeat="author in authors">
+            <td>{{ author.firstName }}</td>
+            <td>{{ author.lastName }}</td>
+        </tr>
+    </table>
+</section>
+</body>
+</html>
