@@ -1,5 +1,7 @@
 package pl.spring.demo.to;
 
+import java.util.List;
+
 public class BookTo {
     private Long id;
     private String title;
@@ -38,5 +40,4 @@ public class BookTo {
         this.authors = authors;
     }
 
-    
 }

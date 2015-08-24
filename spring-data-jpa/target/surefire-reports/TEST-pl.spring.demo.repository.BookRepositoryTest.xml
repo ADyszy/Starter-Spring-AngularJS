@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="pl.spring.demo.repository.BookRepositoryTest" time="0.057" tests="1" errors="0" skipped="0" failures="0">
+<testsuite name="pl.spring.demo.repository.BookRepositoryTest" time="0.066" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="idea.version" value="14.1.4"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -64,5 +64,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testShouldFindBookById" classname="pl.spring.demo.repository.BookRepositoryTest" time="0.057"/>
+  <testcase name="testShouldFindBookById" classname="pl.spring.demo.repository.BookRepositoryTest" time="0.066"/>
 </testsuite>

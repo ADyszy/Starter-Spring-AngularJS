@@ -1,21 +1,52 @@
 <!DOCTYPE html>
 <html>
-<body>
+
+<body ng-controller="BookSaveController">
+
 <section>
+    <div flash-message="5000" style="width:420px; margin: 0 auto; margin-top:2px;"></div>
 
-    <form class="form-group" role="form" style="width:400px">
-        <div class="form-group">
-            <label for="author">Author: </label>
-            <input type="text" class="form-control" id="author">
-        </div>
-        <p>added authors list...</p>
-        <div class="form-group">
-            <label for="title">Title: </label>
-            <input type="text" class="form-control" id="title">
-        </div>
-        <button ng-click="saveBook({'title':'ttt','authors':'aaa'})">Add</button>
-    </form>
+    <!--book form-->
+    <div class="container" style="width: 420px; margin-top:15px;">
+        <form name="bookForm" enctype='application/json' class="form-group" role="form" style="width:400px">
+            <h2>Add new book</h2>
+            <!--title input-->
+            <div ng-class="{ 'has-error': bookForm.name.$invalid && bookForm.name.$dirty }" class="form-group">
+                <input  name="title" type="text" class="form-control" ng-model="title" id="title"  required placeholder="Title">
+            </div>
 
+            <!--add author-->
+            <button class="btn btn-primary" type="button" ng-click="openModal()">Add Author</button>
+
+            <!--submit-->
+            <button class="btn btn-primary" type="button" ng-click="saveValidBook()">Save</button>
+
+        </form>
+    </div>
+
+    <!--input preview-->
+    <div class="container" style="width: 420px;">
+
+        <h2>Book preview</h2>
+        <h4>Book title</h4>
+        <h4 style="border: 2px solid silver; border-radius:5px; left:30px; padding: 20px;">{{ title }}</h4>
+
+        <!--table of authors-->
+        <h4>Book authors:</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="author in authorList">
+                <td>{{ author.name }}</td>
+                <td>{{ author.lastname }}</td>
+            </tr>
+        </table>
+    </div>
 </section>
+
 </body>
 </html>

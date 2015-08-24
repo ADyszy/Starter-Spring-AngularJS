@@ -1,0 +1,45 @@
+    <div ng-controller="BookSaveController">
+
+        <form name="authorForm" novalidate>
+
+            <div class="modal-header">
+                <h3 class="modal-title">Add New Author</h3>
+            </div>
+
+            <div class="modal-body">
+                <!--name input-->
+                <div class="form-group" show-errors='{showSuccess: true}'>
+                    <input type="text" class="form-control" ng-model="author.name" name="name" placeholder="Name" required>
+                    <p class="help-block" ng-if="authorForm.name.$error.required">The name is required</p>
+                </div>
+                <!--last name input-->
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="author.lastname" name="lastname" required placeholder="LastName">
+                    <p class="help-block" ng-if="authorForm.lastname.$error.required">The lastname is required too.</p>
+                </div>
+                <button class="btn btn-primary" type="button" ng-click="addValidAuthor(author)">Add</button>
+            </div>
+
+            <!-- actions -->
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="saveValidAuthor(author)">OK</button>
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+            </div>
+        </form>
+        <div>
+            <!--table of authors-->
+            <h4>Book authors:</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="author in authorList">
+                    <td>{{ author.name }}</td>
+                    <td>{{ author.lastname }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
