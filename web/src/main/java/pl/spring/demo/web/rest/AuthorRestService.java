@@ -12,13 +12,13 @@ import java.util.List;
 /**
  * Created by ADYSZY on 19.08.2015.
  */
-@RestController(value="/authRest")
+@RestController(value="/books")
 public class AuthorRestService {
 
     @Autowired
     private AuthorService authorService;
 
-    @RequestMapping(value = "/allAuthors", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<AuthorTo> findaAllAuthors() {
         return authorService.findAllAuthors();
     }

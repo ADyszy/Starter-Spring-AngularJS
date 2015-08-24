@@ -3,7 +3,7 @@ angular.module('app.books').factory('bookSaveRestService', function ($http, curr
 
     return {
         saveBook: function (book) {
-            return  $http.post(currentContextPath.get() + 'rest/book/', book);
+            return  $http.post(currentContextPath.get() + 'rest/books/book', book);
         }
     };
 });

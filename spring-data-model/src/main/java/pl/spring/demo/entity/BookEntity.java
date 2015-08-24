@@ -2,6 +2,7 @@ package pl.spring.demo.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,15 +20,16 @@ public class BookEntity implements Serializable {
             joinColumns = {@JoinColumn(name = "BOOK_ID", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "AUTHOR_ID", nullable = false, updatable = false)}
     )
-    private Set<AuthorEntity> authors = new HashSet<>();
+    private Collection<AuthorEntity> authors = new HashSet<>();
 
     // for hibernate
     protected BookEntity() {
     }
 
-    public BookEntity(Long id, String title) {
+    public BookEntity(Long id, String title, Collection<AuthorEntity> authors) {
         this.id = id;
         this.title = title;
+        this.authors = authors;
     }
 
     public Long getId() {
@@ -46,7 +48,7 @@ public class BookEntity implements Serializable {
         this.title = title;
     }
 
-    public Set<AuthorEntity> getAuthors() {
+    public Collection<AuthorEntity> getAuthors() {
         return authors;
     }
 

@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import pl.spring.demo.service.BookService;
+import pl.spring.demo.to.AuthorTo;
 import pl.spring.demo.to.BookTo;
 import pl.spring.demo.web.utils.FileUtils;
 
@@ -48,13 +49,15 @@ public class BookRestServiceTest {
         // given
         final String bookTitle = "testTitle";
 
-        final BookTo bookTo1 = new BookTo(1L, bookTitle, "Author1");
-        final BookTo bookTo2 = new BookTo(2L, bookTitle, "Author2");
+        final BookTo bookTo1 = new BookTo(1L, bookTitle, Arrays.asList(new AuthorTo(null, "Author", "1")));
+        final BookTo bookTo2 = new BookTo(2L, bookTitle, Arrays.asList(new AuthorTo(null, "Author", "2")));
+
+//        JSONArray jsonArray = (JSON)
 
         Mockito.when(bookService.findBooksByTitle(bookTitle)).thenReturn(Arrays.asList(bookTo1, bookTo2));
 
         // when
-        ResultActions response = this.mockMvc.perform(get("/books-by-title?titlePrefix=" + bookTitle)
+        ResultActions response = this.mockMvc.perform(get("/books/books-by-title?titlePrefix=" + bookTitle)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON));
         // then
@@ -64,11 +67,13 @@ public class BookRestServiceTest {
 
                 .andExpect(jsonPath("[0].id").value(bookTo1.getId().intValue()))
                 .andExpect(jsonPath("[0].title").value(bookTo1.getTitle()))
-                .andExpect(jsonPath("[0].authors").value(bookTo1.getAuthors()))
+                .andExpect(jsonPath("[0].authors.firstName").value(bookTo1.getAuthors().get(0).getFirstName()))
+                .andExpect(jsonPath("[0].authors.lastName").value(bookTo1.getAuthors().get(0).getLastName()))
 
                 .andExpect(jsonPath("[1].id").value(bookTo2.getId().intValue()))
                 .andExpect(jsonPath("[1].title").value(bookTo2.getTitle()))
-                .andExpect(jsonPath("[1].authors").value(bookTo2.getAuthors()));
+                .andExpect(jsonPath("[1].authors.firstName").value(bookTo2.getAuthors().get(0).getFirstName()))
+                .andExpect(jsonPath("[1].authors.lastName").value(bookTo2.getAuthors().get(0).getLastName()));
     }
 
     @Test
@@ -77,7 +82,7 @@ public class BookRestServiceTest {
         File file = FileUtils.getFileFromClasspath("classpath:pl/spring/demo/web/json/bookToSave.json");
         String json = FileUtils.readFileToString(file);
         // when
-        ResultActions response = this.mockMvc.perform(post("/book")
+        ResultActions response = this.mockMvc.perform(post("/books/book")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json.getBytes()));

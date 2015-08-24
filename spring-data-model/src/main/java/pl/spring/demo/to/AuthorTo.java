@@ -7,7 +7,7 @@ package pl.spring.demo.to;
 //TODO: Make a clean existing author choice feature while adding book..
 public class AuthorTo {
     private Long id;
-    private String firsTName;
+    private String firstName;
     private String lastName;
 
     public AuthorTo(){
@@ -15,7 +15,7 @@ public class AuthorTo {
 
     public AuthorTo(Long id, String firstName, String lastName) {
         this.id = id;
-        this.firsTName = firstName;
+        this.firstName = firstName;
         this.lastName = lastName;
     }
 
@@ -27,12 +27,12 @@ public class AuthorTo {
         this.id = id;
     }
 
-    public String getFirsTName() {
-        return firsTName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirsTName(String firsTName) {
-        this.firsTName = firsTName;
+    public void setFirstName(String firsTName) {
+        this.firstName = firsTName;
     }
 
     public String getLastName() {

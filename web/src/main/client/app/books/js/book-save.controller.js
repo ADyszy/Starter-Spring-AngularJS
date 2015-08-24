@@ -2,7 +2,6 @@ angular.module('app.books').controller('BookSaveController', function ($scope, b
     'use strict';
 
     $scope.authorList = [];
-    $scope.modalInstance;
     $scope.books = [];
     $scope.gridOptions = { data: 'books' };
     $scope.prefix = '';
@@ -24,13 +23,14 @@ angular.module('app.books').controller('BookSaveController', function ($scope, b
     };
 
     $scope.addAuthor = function (author) {
-        $scope.authorList.push({name : author.name, lastname : author.lastname});
+        $scope.authorList.push({firstName : author.name, lastName : author.lastname});
     };
 
     $scope.saveValidBook = function() {
         if ($scope.bookForm.$valid && $scope.authorList.length > 0) {
             // TODO : handle the authors field..
-            var newBook = {'title':$scope.title, 'authors':'nonono'};
+            var newBook = {"id":null,"title":$scope.title,"authors":$scope.authorList};
+
             $scope.saveBook(newBook);
             Flash.create('success', 'Book has been succesfully added.', 'custom-class');
             $scope.reset();
@@ -43,7 +43,7 @@ angular.module('app.books').controller('BookSaveController', function ($scope, b
             $scope.user = '';
     };
 
-    $scope.saveValidAuthor = function(author) {
+    $scope.saveValidAuthor = function() {
         if ($scope.authorList.length > 0) {
             Flash.create('success', 'Author has been succesfully added.', 'custom-class');
         } else {

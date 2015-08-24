@@ -20,7 +20,7 @@ public class AuthorMapper {
 
     public static AuthorEntity map(AuthorTo authorTo) {
         if (authorTo != null){
-            return new AuthorEntity(authorTo.getId(), authorTo.getFirsTName(), authorTo.getLastName());
+            return new AuthorEntity(authorTo.getId(), authorTo.getFirstName(), authorTo.getLastName());
         }
         return null;
     }

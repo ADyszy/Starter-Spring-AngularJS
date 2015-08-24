@@ -21,6 +21,9 @@
             <!--submit-->
             <button class="btn btn-primary" type="button" ng-click="saveValidBook()">Save</button>
 
+            <!--cancel-->
+            <button class="btn btn-warning" type="button" onclick="location.href = '#/books/book-list';">Cancel</button>
+
         </form>
     </div>
 
@@ -41,8 +44,8 @@
                 </tr>
             </thead>
             <tr ng-repeat="author in authorList">
-                <td>{{ author.name }}</td>
-                <td>{{ author.lastname }}</td>
+                <td>{{ author.firstName }}</td>
+                <td>{{ author.lastName }}</td>
             </tr>
         </table>
     </div>
