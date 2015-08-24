@@ -1,0 +1,24 @@
+
+<div ng-controller="BookSearchController">
+    <div style="padding:20px;">
+        <h2 style="text-align:center;"> Book Editor: </h2>
+        <div>
+            <table style="margin: 0 auto;">
+                <tr>
+                    <th>Tytuł</th>
+                </tr>
+                <form name="bookEditForm" novalidate>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" ng-model="book.title" name="title" ng-attr-placeholder="{{ book.title }}" required>
+                            </div>
+                            <button  class="btn btn-primary" ng-click="ok(book)">Edit</button>
+                            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                        </td>
+                    </tr>
+                </form>
+            </table>
+        </div>
+    </div>
+</div>

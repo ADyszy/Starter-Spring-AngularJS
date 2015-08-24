@@ -13,8 +13,8 @@ angular.module('app.books').controller('BookSaveController', function ($scope, b
 
     $scope.openModal = function () {
         var modalInstance = $modal.open({
-        templateUrl: 'books/html/book-modal.html',
-        controller: 'AuthorAdderModalController'
+            templateUrl: 'books/html/book-modal.html',
+            controller: 'AuthorAdderModalController'
         });
 
         modalInstance.result.then(function (authorList) {
@@ -29,7 +29,7 @@ angular.module('app.books').controller('BookSaveController', function ($scope, b
     $scope.saveValidBook = function() {
         if ($scope.bookForm.$valid && $scope.authorList.length > 0) {
             // TODO : handle the authors field..
-            var newBook = {"id":null,"title":$scope.title,"authors":$scope.authorList};
+            var newBook = {'id':null,'title':$scope.title,'authors':$scope.authorList};
 
             $scope.saveBook(newBook);
             Flash.create('success', 'Book has been succesfully added.', 'custom-class');
