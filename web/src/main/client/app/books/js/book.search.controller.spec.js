@@ -1,6 +1,8 @@
 describe('book controller', function () {
     'use strict';
 
+
+
     beforeEach(function () {
         module('app.main');
         module('flash');
@@ -8,6 +10,7 @@ describe('book controller', function () {
     });
 
     var $scope;
+   
     beforeEach(inject(function ($rootScope) {
         $scope = $rootScope.$new();
     }));
@@ -37,4 +40,47 @@ describe('book controller', function () {
         expect(Flash.create).toHaveBeenCalledWith('success', 'Książka została usunięta.', 'custom-class');
         expect($scope.books.length).toBe(0);
     }));
+
+    it('search should call bookService.search with empty prefix', inject(function ($controller, $q, bookService) {
+        // given
+        $controller('BookSearchController', {$scope: $scope});
+        $scope.prefix = '';
+        var deferred = $q.defer();
+        spyOn(bookService, 'search').and.returnValue(deferred.promise);
+        // when
+        $scope.search();
+        // then
+        expect(bookService.search).toHaveBeenCalledWith('');
+    }));
+
+    it('search should call bookService.search with changed prefix', inject(function ($controller, $q, bookService) {
+        // given
+        $controller('BookSearchController', {$scope: $scope});
+        $scope.prefix = 'asd';
+        var deferred = $q.defer();
+        spyOn(bookService, 'search').and.returnValue(deferred.promise);
+        // when
+        $scope.search();
+        // then
+        expect(bookService.search).toHaveBeenCalledWith('asd');
+    }));
+
+    it('search should fill books with a found book', inject(function ($controller, $q, bookService) {
+        //given
+        var aBookList = [{id:1, title:'aBook', authors:null}];
+        $scope.books = aBookList;
+        $controller('BookSearchController', {$scope: $scope});
+        var deferred = $q.defer();
+        spyOn(bookService, 'search').and.returnValue(deferred.promise);
+
+        //when
+        $scope.search();
+        deferred.resolve({data: aBookList});
+        $scope.$digest();
+
+        //then
+        expect($scope.books.length).toBe(1);
+    }));
+
+
 });
