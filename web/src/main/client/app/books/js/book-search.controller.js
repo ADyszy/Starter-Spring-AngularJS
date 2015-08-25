@@ -41,17 +41,15 @@ angular.module('app.books').controller('BookSearchController', function ($scope,
 
         modalInstance.editedBook = book;
 
-        modalInstance.result.then(function (book) {
-            $scope.bookEditValidation(book);
+        modalInstance.result.then(function () {
             $scope.search();
         });
     };
 
-    $scope.bookEditValidation = function(book) {
-        if(book.title !== '' && book.title!== null) {
+    $scope.bookEditValidation = function(book, newTitle) {
+        if($scope.bookEditForm.$valid) {
+            book.title = newTitle;
             bookSaveService.saveBook(book);
-        } else {
-            Flash.create('danger', 'Bad input, a book needs an author.', 'custom-class');
         }
     };
 

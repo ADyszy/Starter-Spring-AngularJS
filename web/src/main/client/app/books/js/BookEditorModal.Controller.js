@@ -3,8 +3,8 @@ angular.module('app.books').controller('BookEditorModalController', function ($s
 
     $scope.book = $modalInstance.editedBook;
 
-    $scope.ok = function (book) {
-        $modalInstance.close(book);
+    $scope.ok = function () {
+        $modalInstance.close();
     };
 
     $scope.cancel = function () {

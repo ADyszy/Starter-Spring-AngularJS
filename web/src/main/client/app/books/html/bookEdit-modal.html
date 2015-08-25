@@ -2,23 +2,19 @@
 <div ng-controller="BookSearchController">
     <div style="padding:20px;">
         <h2 style="text-align:center;"> Book Editor: </h2>
-        <div>
-            <table style="margin: 0 auto;">
-                <tr>
-                    <th>Tytuł</th>
-                </tr>
                 <form name="bookEditForm" novalidate>
-                    <tr>
-                        <td>
                             <div class="form-group">
-                                <input type="text" class="form-control" ng-model="book.title" name="title" ng-attr-placeholder="{{ book.title }}" required>
+
+                                <div class="form-group" show-errors='{showSuccess: true}'>
+                                    <input type="text" class="form-control" ng-model="newTitle" name="title" placeholder="New title here" required>
+                                    <p class="help-block" ng-if="bookEditForm.title.$error.required">The title is required</p>
+                                </div>
+                                <button  class="btn btn-primary" ng-click="bookEditValidation(book, newTitle)">Edit</button>
+
                             </div>
-                            <button  class="btn btn-primary" ng-click="ok(book)">Edit</button>
+                            <button  class="btn btn-primary" ng-click="ok()">OK</button>
                             <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-                        </td>
-                    </tr>
+
                 </form>
-            </table>
-        </div>
     </div>
 </div>
