@@ -33,14 +33,10 @@ angular.module('app.books').controller('BookSaveController', function ($scope, b
 
             $scope.saveBook(newBook);
             Flash.create('success', 'Book has been succesfully added.', 'custom-class');
-            $scope.reset();
+
         } else {
             Flash.create('danger', 'There is some invalid or incomplete data.', 'custom-class');
         }
-    };
-
-    $scope.reset = function() {
-            $scope.user = '';
     };
 
     $scope.saveValidAuthor = function() {
@@ -50,7 +46,6 @@ angular.module('app.books').controller('BookSaveController', function ($scope, b
             Flash.create('danger', 'No authors added.', 'custom-class');
         }
         $scope.ok($scope.authorList);
-        $scope.reset();
     };
 
      $scope.clearAuthorForm = function() {
@@ -61,9 +56,9 @@ angular.module('app.books').controller('BookSaveController', function ($scope, b
     $scope.addValidAuthor = function(author) {
         if ($scope.authorForm.$valid) {
             $scope.addAuthor(author);
-            $scope.reset();
             $scope.clearAuthorForm();
         }
     };
+
 });
 

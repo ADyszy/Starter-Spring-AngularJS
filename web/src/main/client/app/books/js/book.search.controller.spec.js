@@ -1,7 +1,5 @@
-describe('book controller', function () {
+describe('book search controller', function () {
     'use strict';
-
-
 
     beforeEach(function () {
         module('app.main');
@@ -10,7 +8,9 @@ describe('book controller', function () {
     });
 
     var $scope;
-   
+
+
+
     beforeEach(inject(function ($rootScope) {
         $scope = $rootScope.$new();
     }));
@@ -82,5 +82,45 @@ describe('book controller', function () {
         expect($scope.books.length).toBe(1);
     }));
 
+    it ('openModal should open modal and edit book', inject(function ($controller, $q, $modal, bookSaveService) {
+        // given
+        var book = {title:'aTitle', authors:null};
+        var newTitle = 'aNewTitle';
+        var newBook = book; newBook.title = newTitle;
+        $scope.search = function () {};
+        $scope.bookEditForm = { $valid:true };
+
+        $controller('BookSearchController', {$scope: $scope});
+
+        var editModalDeferred = $q.defer();
+        spyOn($modal, 'open').and.returnValue({result: editModalDeferred.promise});
+        spyOn(bookSaveService, 'saveBook');
+
+        // when
+        $scope.openModal(book);
+        $scope.bookEditValidation(book, newTitle);
+
+        // then
+        expect(bookSaveService.saveBook).toHaveBeenCalledWith(newBook);
+    }));
+
+     it ('openModal should open modal and edit book', inject(function ($controller, $q, $modal, bookSaveService) {
+         // given
+         var book = {title:'badTitle or sth..', authors:null};
+         var newTitle = 'aNewTitle';
+         var newBook = book; newBook.title = newTitle;
+         $scope.search = function () {};
+         $scope.bookEditForm = { $valid:false };
+         $controller('BookSearchController', {$scope: $scope});
+         var editModalDeferred = $q.defer();
+         spyOn($modal, 'open').and.returnValue({result: editModalDeferred.promise});
+         spyOn(bookSaveService, 'saveBook');
+           // when
+         $scope.openModal(book);
+         $scope.bookEditValidation(book, newTitle);
+
+         // then
+         expect(bookSaveService.saveBook.calls.any()).toBe(false);
+     }));
 
 });
