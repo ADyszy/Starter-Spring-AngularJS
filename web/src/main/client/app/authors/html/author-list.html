@@ -3,17 +3,30 @@
 <body>
 <section>
     <p>Lista autorow:</p>
-    <button ng-click="findAll()">Szukaj</button>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>LastName</th>
-        </tr>
-        <tr ng-repeat="author in authors">
-            <td>{{ author.firstName }}</td>
-            <td>{{ author.lastName }}</td>
-        </tr>
-    </table>
+
+    <div style="border: solid 1px silver; width: 320px;">
+        <div style="padding: 10px;">
+            <label>Filter: </label> <input type="text" ng-model="search[filter]"><br>
+            <p>By: </p>
+            <ul>
+                <li><a href="" ng-click="changeFilterTo('$')">Any</a></li>
+                <li><a href="" ng-click="changeFilterTo('firstName')">By Name</a></li>
+                <li><a href="" ng-click="changeFilterTo('lastName')">By LastNamee</a></li>
+            </ul>
+        </div>
+
+        <table style="width:100%;">
+            <tr>
+                <th>Name</th>
+                <th>LastName</th>
+            </tr>
+            <tr ng-repeat="author in authors | filter:search">
+                <td>{{ author.firstName }}</td>
+                <td>{{ author.lastName }}</td>
+            </tr>
+        </table>
+    </div>
+
 </section>
 </body>
 </html>

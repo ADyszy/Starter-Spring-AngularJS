@@ -3,7 +3,6 @@ describe('author search controller', function () {
 
     beforeEach(function() {
         module('app.main');
-        module('flash');
         module('app.authors');
     });
 

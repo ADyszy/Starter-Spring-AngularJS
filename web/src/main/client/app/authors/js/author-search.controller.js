@@ -8,4 +8,13 @@ angular.module('app.authors').controller('AuthorSearchController', function ($sc
             angular.copy(response.data, $scope.authors);
         });
     };
+
+    $scope.findAll();
+
+    $scope.filter = "$";
+    $scope.search = {firstName:'', lastName:'', $:''};
+    $scope.changeFilterTo = function(f) {
+        $scope.filter = f;
+    };
+
 });
