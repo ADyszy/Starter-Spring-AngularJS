@@ -8,8 +8,6 @@ describe('author search controller', function () {
 
     var $scope;
 
-
-
     beforeEach(inject(function($rootScope) {
         $scope = $rootScope.$new();
     }));

@@ -3,10 +3,10 @@
 <body>
 <section>
     <p>Lista autorow:</p>
-
     <div style="border: solid 1px silver; width: 320px;">
         <div style="padding: 10px;">
-            <label>Filter: </label> <input type="text" ng-model="search[filter]"><br>
+            <label>Filter: </label> <input type="text" ng-model="search[filter]">
+            <button class="btn btn-primary" type="button" ng-click="findAll()">find</button><br>
             <p>By: </p>
             <ul>
                 <li><a href="" ng-click="changeFilterTo('$')">Any</a></li>

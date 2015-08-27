@@ -9,9 +9,7 @@ angular.module('app.authors').controller('AuthorSearchController', function ($sc
         });
     };
 
-    $scope.findAll();
-
-    $scope.filter = "$";
+    $scope.filter = '$';
     $scope.search = {firstName:'', lastName:'', $:''};
     $scope.changeFilterTo = function(f) {
         $scope.filter = f;
